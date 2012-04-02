@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Memcachier Algebra Example</title>
+  <script src="/static/jquery-1.7.2.js" type="text/javascript"></script>
+  <script src="/static/main.js" type="text/javascript"></script>
+</head>
+<body>
+
+  <h1>MemCachier Algebra Example</h1>
+  <p>Create an algebraic equation.  When you submit the form, we'll check the cache to see if the answer has been cached. If we get a hit, we'll return the results from the cache.  If not, we'll do the computation.</p>
+
+  <input type="text" id="a" />
+  <select id="op">
+    <option selected value="plus">+</option>
+    <option value="minus">-</option>
+  </select>
+  <input type="text" id="b" />
+  <input type="button" value="Submit" data-compute="true" />
+
+  <p id="answer"></p>
+
+</body>
+</html>
