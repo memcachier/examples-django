@@ -43,7 +43,7 @@ different environment variables than MemCachier provides.  Somewhere in your set
         }
     }
 
-Feel free to change the TIMOUT setting to match your needs.  You can also leave this blank to accept the default value.
+Feel free to change the TIMEOUT setting to match your needs.  You can also leave this blank to accept the default value.
 
 Application Code
 -----
