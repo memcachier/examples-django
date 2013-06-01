@@ -1,13 +1,15 @@
 # MemCachier Django Example
 
-This is an example Django app that uses MemCachier to cache algebraic
+This is an example Django app that uses
+[MemCachier](http://www.memcachier.com) to cache algebraic
 computations in Heroku. This example is written with Django 1.4.
 
 You can view a working version of this app
 [here](http://memcachier-examples-django.herokuapp.com).
 Running this app on your local machine in development will work as
 well, although then you won't be using MemCachier -- you'll be using a
-local dummy cache. MemCachier is currently only available in Heroku.
+local dummy cache. MemCachier is currently only available with various
+cloud providers.
 
 Setting up MemCachier to work in Django is very easy. You need to
 make changes to requirements.txt, settings.py, and any app code that
