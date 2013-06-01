@@ -2,7 +2,7 @@
 
 This is an example Django app that uses
 [MemCachier](http://www.memcachier.com) to cache algebraic
-computations in Heroku. This example is written with Django 1.5.
+computations. This example is written with Django 1.5.
 
 You can view a working version of this app
 [here](http://memcachier-examples-django.herokuapp.com).
