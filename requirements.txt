@@ -4,3 +4,4 @@ django-pylibmc-sasl==0.2.4
 psycopg2==2.4.5
 pylibmc==1.2.2
 wsgiref==0.1.2
+gunicorn==0.17.2
