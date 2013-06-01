@@ -1,7 +1,8 @@
-Django==1.4
-distribute==0.6.24
+Django==1.5.1
+distribute==0.6.34
+dj-database-url==0.2.1
 django-pylibmc-sasl==0.2.4
-psycopg2==2.4.5
-pylibmc==1.2.2
+gunicorn==0.17.4
+psycopg2==2.5
+pylibmc==1.2.3
 wsgiref==0.1.2
-gunicorn==0.17.2
