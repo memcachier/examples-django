@@ -13,7 +13,31 @@ cloud providers.
 
 Setting up MemCachier to work in Django is very easy. You need to
 make changes to requirements.txt, settings.py, and any app code that
-you want cached. These changes are covered in detail below:
+you want cached. These changes are covered in detail below.
+
+## Building
+
+It is best to use the python `virtualenv` tool to build locally:
+
+~~~~ .sh
+$ virtualenv venv --distribute
+$ source venv/bin/activate
+$ pip install Django psycopg2 dj-database-url django-pylibmc-sasl gunicorn
+$ python manage.py runserver
+~~~~
+
+## Deploy to Heroku
+
+Run the following commands to deploy the app to Heroku:
+
+~~~~ .sh
+$ git clone https://github.com/memcachier/examples-django.git
+$ cd examples-django
+$ heroku create
+$ heroku addons:add memcachier:dev
+$ git push heroku master:master
+$ heroku open
+~~~~
 
 ## requirements.txt
 
