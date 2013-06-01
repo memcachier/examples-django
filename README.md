@@ -2,7 +2,7 @@
 
 This is an example Django app that uses
 [MemCachier](http://www.memcachier.com) to cache algebraic
-computations in Heroku. This example is written with Django 1.4.
+computations in Heroku. This example is written with Django 1.5.
 
 You can view a working version of this app
 [here](http://memcachier-examples-django.herokuapp.com).
@@ -22,17 +22,16 @@ default client doesn't support SASL authentication. Run the following
 commands to install the necessary pips:
 
 ~~~~ .shell
-sudo port install libmemcached
-LIBMEMCACHED=/opt/local pip install pylibmc
-pip install django-pylibmc-sasl
+sudo brew install libmemcached
+pip install django-pylibmc-sasl pylibmc
 ~~~~
 
 Don't forget to update your requirements.txt file with these new pips.
 requirements.txt should have the following two lines:
 
 ~~~~
-pylibmc==1.2.2
 django-pylibmc-sasl==0.2.4
+pylibmc==1.2.3
 ~~~~
 
 ## settings.py
