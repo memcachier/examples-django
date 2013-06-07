@@ -26,6 +26,8 @@ $ pip install Django psycopg2 dj-database-url django-pylibmc-sasl gunicorn
 $ python manage.py runserver
 ~~~~
 
+Then visit `http://localhost:8000` to view the app.
+
 ## Deploy to Heroku
 
 Run the following commands to deploy the app to Heroku:
@@ -90,8 +92,9 @@ MemCachier. A description of the low-level caching API can be found
 [here](https://docs.djangoproject.com/en/1.4/topics/cache/#the-low-level-cache-api).
 All the built-in Django caching tools will work, too.
 
-Take a look at `memcachier_algebra/views.py` in this repository for an
-example.
+Take a look at
+[memcachier_algebra/views.py](https://github.com/memcachier/examples-django/blob/master/memcachier_algebra/views.py)
+in this repository for an example.
 
 ## Get involved!
 
