@@ -12,6 +12,7 @@ CACHES = {
         'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
         'TIMEOUT': 500,
         'BINARY': True,
+        'OPTIONS': { 'tcp_nodelay': True }
     }
 }
 
