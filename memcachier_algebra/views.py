@@ -11,7 +11,7 @@ def compute(request):
     b = int(request.GET["b"])
     op = request.GET["op"]
     expr = "%d%s%d" % (a, op, b)
-  
+
     in_cache = cache.get(expr)
     if in_cache:
       result = in_cache

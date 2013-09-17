@@ -3,27 +3,25 @@ import os
 
 ## MemCachier Settings
 ## ===================
-os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '').replace(',', ';')
-os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
-os.environ['MEMCACHE_PASSWORD'] = os.environ.get('MEMCACHIER_PASSWORD', '')
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'TIMEOUT': 500,
-        'BINARY': True,
-        'OPTIONS': { 'tcp_nodelay': True }
-    }
-}
-
 if os.environ.get('DEVELOPMENT', None):
-    from settings_dev import *
-    # Use django local development cache (for local development).
-    # CACHES = {
-    #   'default': {
-    #     'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
-    #   }
-    # }
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
+        }
+    }
+else:
+    os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '').replace(',', ';')
+    os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
+    os.environ['MEMCACHE_PASSWORD'] = os.environ.get('MEMCACHIER_PASSWORD', '')
+
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+            'TIMEOUT': 500,
+            'BINARY': True,
+            'OPTIONS': { 'tcp_nodelay': True }
+        }
+    }
 
 ## ======================================================================
 ## EVERYTHING BELOW IS CONFIGURATION UNRELATED TO THIS MEMCACHIER EXAMPLE

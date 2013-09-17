@@ -5,7 +5,8 @@ This is an example Django app that uses
 computations. This example is written with Django 1.5.
 
 You can view a working version of this app
-[here](http://memcachier-examples-django.herokuapp.com).
+[here](http://memcachier-examples-django.herokuapp.com) that uses
+[MemCachier on Heroku](https://addons.heroku.com/memcachier).
 Running this app on your local machine in development will work as
 well, although then you won't be using MemCachier -- you'll be using a
 local dummy cache. MemCachier is currently only available with various
@@ -23,10 +24,16 @@ It is best to use the python `virtualenv` tool to build locally:
 $ virtualenv venv --distribute
 $ source venv/bin/activate
 $ pip install Django psycopg2 dj-database-url django-pylibmc-sasl gunicorn
-$ python manage.py runserver
+$ DEVELOPMENT=1 python manage.py runserver
 ~~~~
 
-Then visit `http://localhost:8000` to view the app.
+Then visit `http://localhost:8000` to view the app. Alternatively you
+can use foreman and gunicorn to run the server locally (after copying
+`dev.env` to `.env`):
+
+~~~~ .sh
+$ foreman start
+~~~~
 
 ## Deploy to Heroku
 
