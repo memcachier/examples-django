@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.core.cache import cache
+import sys
 
 def home(request):
   return render_to_response('index.html', {})
@@ -26,4 +27,5 @@ def compute(request):
 
     return HttpResponse("%s<br />cache: %s" % (result, message))
   except:
-    return HttpResponse("give us two values to add or subtract")
+      print sys.exc_info()
+      return HttpResponse("give us two values to add or subtract")

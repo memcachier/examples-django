@@ -17,9 +17,16 @@ else:
     CACHES = {
         'default': {
             'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-            'TIMEOUT': 500,
             'BINARY': True,
-            'OPTIONS': { 'tcp_nodelay': True }
+            'OPTIONS': {
+                'no_block': True,
+                'tcp_nodelay': True,
+                'tcp_keepalive': True,
+                'remove_failed': 4,
+                'retry_timeout': 2,
+                # 'dead_timeout': 10,
+                '_poll_timeout': 2000
+            }
         }
     }
 

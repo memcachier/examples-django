@@ -23,7 +23,7 @@ It is best to use the python `virtualenv` tool to build locally:
 ~~~~ .sh
 $ virtualenv venv --distribute
 $ source venv/bin/activate
-$ pip install Django psycopg2 dj-database-url django-pylibmc-sasl gunicorn
+$ pip install Django psycopg2 dj-database-url django-pylibmc gunicorn
 $ DEVELOPMENT=1 python manage.py runserver
 ~~~~
 
@@ -56,15 +56,15 @@ commands to install the necessary pips:
 
 ~~~~ .shell
 sudo brew install libmemcached
-pip install django-pylibmc-sasl pylibmc
+pip install django-pylibmc pylibmc
 ~~~~
 
 Don't forget to update your requirements.txt file with these new pips.
 requirements.txt should have the following two lines:
 
 ~~~~
-django-pylibmc-sasl==0.2.4
-pylibmc==1.2.3
+django-pylibmc==0.5.0
+pylibmc==1.3.0
 ~~~~
 
 ## settings.py
@@ -75,22 +75,28 @@ environment variables than MemCachier provides. Somewhere in your
 settings.py file you should have the following lines:
 
 ~~~~ .python
-os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '')
+os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '').replace(',', ';')
 os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
 os.environ['MEMCACHE_PASSWORD'] = os.environ.get('MEMCACHIER_PASSWORD', '')
 
 CACHES = {
     'default': {
         'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'LOCATION': os.environ.get('MEMCACHIER_SERVERS', ''),
-        'TIMEOUT': 500,
         'BINARY': True,
+        'OPTIONS': {
+            'no_block': True,
+            'tcp_nodelay': True,
+            'tcp_keepalive': True,
+            'remove_failed': 4,
+            'retry_timeout': 2,
+            'dead_timeout': 10,
+            '_poll_timeout': 2000
+        }
     }
 }
 ~~~~
 
-Feel free to change the TIMEOUT setting to match your needs. You can
-also leave this blank to accept the default value.
+Feel free to change the `_poll_timeout` setting to match your needs.
 
 ## Application Code
 
