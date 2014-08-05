@@ -1,8 +1,8 @@
-# MemCachier Django Example
+# MemCachier Django Example App
 
 This is an example Django app that uses
 [MemCachier](http://www.memcachier.com) to cache algebraic
-computations. This example is written with Django 1.5.
+computations. This example is written with Django 1.6.5.
 
 You can view a working version of this app
 [here](http://memcachier-examples-django.herokuapp.com) that uses
@@ -15,6 +15,12 @@ cloud providers.
 Setting up MemCachier to work in Django is very easy. You need to
 make changes to requirements.txt, settings.py, and any app code that
 you want cached. These changes are covered in detail below.
+
+## Deploy to Heroku
+
+You can deploy this app yourself to Heroku to play with.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ## Building
 

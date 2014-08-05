@@ -1,0 +1,8 @@
+{
+  "name": "MemCachier Django Example App",
+  "description": "Python Django (1.6) app illustrating how to use MemCachier to cache computations",
+  "repository": "https://github.com/memcachier/examples-django",
+  "logo": "https://www.memcachier.com/assets/logo-large.png",
+  "keywords": ["ruby", "rails", "memcache", "memcachier", "caching" ],
+  "addons": [ "memcachier" ]
+}
