@@ -3,6 +3,10 @@ import os
 
 ## MemCachier Settings
 ## ===================
+# Docs: http://sendapatch.se/projects/pylibmc/behaviors.html
+#       http://docs.libmemcached.org/memcached_behavior.html
+#       https://github.com/django-pylibmc/django-pylibmc
+#       https://docs.djangoproject.com/en/1.6/topics/cache
 if os.environ.get('DEVELOPMENT', None):
     CACHES = {
         'default': {
@@ -10,22 +14,46 @@ if os.environ.get('DEVELOPMENT', None):
         }
     }
 else:
+    # Configure server credentials
     os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '').replace(',', ';')
     os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
     os.environ['MEMCACHE_PASSWORD'] = os.environ.get('MEMCACHIER_PASSWORD', '')
 
+    # Configure cache settings
     CACHES = {
         'default': {
+            # Use pylibmc
             'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+
+            # Use binary memcache protocol (needed for authentication)
             'BINARY': True,
+
+            # TIMEOUT is not the connection timeout! It's the default expiration
+            # timeout that should be applied to keys! Setting it to `None`
+            # disables expiration.
+            'TIMEOUT': None,
+
             'OPTIONS': {
+                # Enable faster IO
                 'no_block': True,
                 'tcp_nodelay': True,
+
+                # Keep connection alive
                 'tcp_keepalive': True,
+
+                # Timeout for set/get requests (sadly timeouts don't mark a
+                # server as failed, so failover only works when the connection
+                # is refused)
+                '_poll_timeout': 2000,
+
+                # Use consistent hashing for failover
+                'ketama': True,
+
+                # Configure failover timings
+                'connect_timeout': 2000,
                 'remove_failed': 4,
                 'retry_timeout': 2,
-                # 'dead_timeout': 10,
-                '_poll_timeout': 2000
+                'dead_timeout': 10
             }
         }
     }
@@ -92,7 +120,7 @@ ROOT_URLCONF = 'memcachier_algebra.urls'
 WSGI_APPLICATION = 'memcachier_algebra.wsgi.application'
 
 TEMPLATE_DIRS = (
-    "templates"
+    "templates",
 )
 
 INSTALLED_APPS = (
