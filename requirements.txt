@@ -1,7 +1,6 @@
 Django==1.6.11
-dj-database-url==0.3.0
-django-pylibmc==0.6.0
-gunicorn==19.3.0
+django-pylibmc==0.6.1
+gunicorn==19.4.5
 psycopg2==2.6.1
 pylibmc==1.5.0
 wsgiref==0.1.2

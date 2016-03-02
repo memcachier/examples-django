@@ -124,7 +124,7 @@ ROOT_URLCONF = 'memcachier_algebra.urls'
 WSGI_APPLICATION = 'memcachier_algebra.wsgi.application'
 
 TEMPLATE_DIRS = (
-    "templates",
+    os.path.join(PROJECT_ROOT, 'templates'),
 )
 
 INSTALLED_APPS = (
