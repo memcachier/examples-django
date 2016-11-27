@@ -1,4 +1,4 @@
-Django==1.6.11
+Django==1.8.16
 dj-database-url==0.4.1
 django-pylibmc==0.6.1
 gunicorn==19.6.0

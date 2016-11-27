@@ -83,11 +83,25 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static')
 ]
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+## Templates
+## =========
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_ROOT, 'templates'),
+)
 
 ## Other Settings
 ## ==============
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 ADMINS = ()
 MANAGERS = ADMINS
 TIME_ZONE = 'America/Los_Angeles'
@@ -99,17 +113,7 @@ USE_TZ = True
 MEDIA_ROOT = ''
 MEDIA_URL = ''
 
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-)
-
 SECRET_KEY = 'l&amp;nd6u%i-s)2c)s5=^i2#v*4)%i9j-g^yo=)z#(#+5pe)o_=%v'
-
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -122,10 +126,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'memcachier_algebra.urls'
 
 WSGI_APPLICATION = 'memcachier_algebra.wsgi.application'
-
-TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, 'templates'),
-)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -159,3 +159,5 @@ LOGGING = {
         },
     }
 }
+
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
