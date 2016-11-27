@@ -1,6 +1,7 @@
 {
   "name": "MemCachier Django Example App",
-  "description": "Python Django (1.6) app illustrating how to use MemCachier to cache computations",
+  "description": "Django (1.6) app illustrating how to use MemCachier to cache computations",
+  "keywords": ["python", "django", "memcache", "memcachier", "caching" ],
   "keywords": ["python", "django", "memcache", "memcachier", "caching", "performance", "pylibmc" ],
   "logo": "https://www.memcachier.com/assets/logo-large.png",
   "image": "heroku/python",
