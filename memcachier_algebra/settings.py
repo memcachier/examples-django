@@ -110,6 +110,9 @@ USE_TZ = True
 MEDIA_ROOT = ''
 MEDIA_URL = ''
 
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
 SECRET_KEY = 'l&amp;nd6u%i-s)2c)s5=^i2#v*4)%i9j-g^yo=)z#(#+5pe)o_=%v'
 
 MIDDLEWARE_CLASSES = (
