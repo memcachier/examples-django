@@ -6,7 +6,7 @@ import os
 # Docs: http://sendapatch.se/projects/pylibmc/behaviors.html
 #       http://docs.libmemcached.org/memcached_behavior.html
 #       https://github.com/django-pylibmc/django-pylibmc
-#       https://docs.djangoproject.com/en/1.6/topics/cache
+#       https://docs.djangoproject.com/en/1.8/topics/cache
 if os.environ.get('DEVELOPMENT', None):
     CACHES = {
         'default': {
