@@ -3,19 +3,31 @@ import pylibmc
 import sys
 import time
 
+mc_srvs = os.environ.get('MEMCACHIER_SERVERS', '').split(',')
+mc_user = os.environ.get('MEMCACHIER_USERNAME', '')
+mc_pass = os.environ.get('MEMCACHIER_PASSWORD', '')
+
 mc = pylibmc.Client(
-        [os.environ['MEMCACHIER_SERVERS']],
+        mc_srvs,
+        username=mc_user,
+        password=mc_pass,
         binary=True,
-        username=os.environ['MEMCACHIER_USERNAME'],
-        password=os.environ['MEMCACHIER_PASSWORD'],
         behaviors={
-            'no_block': True,
+            # Enable faster IO
             'tcp_nodelay': True,
             'tcp_keepalive': True,
-            'remove_failed': 4,
+
+            # Timeout settings
+            'connect_timeout': 2000, # ms
+            'send_timeout': 750 * 1000, # us
+            'receive_timeout': 750 * 1000, # us
+            '_poll_timeout': 2000, # ms
+
+            # Better failover
+            'ketama': True,
+            'remove_failed': 1,
             'retry_timeout': 2,
-            # 'dead_timeout': 10,
-            '_poll_timeout': 2000
+            'dead_timeout': 30,
         }
     )
 
