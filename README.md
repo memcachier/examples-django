@@ -141,7 +141,7 @@ There is a bug file against Django for this issue
 
 In your application, use django.core.cache methods to access
 MemCachier. A description of the low-level caching API can be found
-[here](https://docs.djangoproject.com/en/1.4/topics/cache/#the-low-level-cache-api).
+[here](https://docs.djangoproject.com/en/1.8/topics/cache/#the-low-level-cache-api).
 All the built-in Django caching tools will work, too.
 
 Take a look at
