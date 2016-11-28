@@ -26,7 +26,7 @@ You can deploy this app yourself to Heroku to play with.
 
 It is best to use the python `virtualenv` tool to build locally:
 
-``` .sh
+```sh
 $ virtualenv-2.7 venv
 $ source venv/bin/activate
 $ pip install -r requirements.txt
@@ -37,7 +37,7 @@ Then visit `http://localhost:8000` to view the app. Alternatively you
 can use foreman and gunicorn to run the server locally (after copying
 `dev.env` to `.env`):
 
-``` .sh
+```sh
 $ foreman start
 ```
 
@@ -45,7 +45,7 @@ $ foreman start
 
 Run the following commands to deploy the app to Heroku:
 
-``` .sh
+```sh
 $ git clone https://github.com/memcachier/examples-django.git
 $ cd examples-django
 $ heroku create
@@ -60,7 +60,7 @@ MemCachier has been tested with the pylibmc memcache client, but the
 default client doesn't support SASL authentication. Run the following
 commands to install the necessary pips:
 
-``` .sh
+```sh
 $ sudo brew install libmemcached
 $ pip install django-pylibmc pylibmc
 ```
@@ -80,7 +80,7 @@ to setup your environment, because pylibmc expects different environment
 variables than MemCachier provides. Somewhere in your `settings.py` file you
 should have the following lines:
 
-``` .python
+```python
 os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '').replace(',', ';')
 os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
 os.environ['MEMCACHE_PASSWORD'] = os.environ.get('MEMCACHIER_PASSWORD', '')
@@ -128,7 +128,7 @@ connection setup is even more expensive than normal.
 
 You can fix this by putting the following code in your `wsgi.py` file:
 
-``` .python
+```python
 # Fix django closing connection to MemCachier after every request (#11331)
 from django.core.cache.backends.memcached import BaseMemcachedCache
 BaseMemcachedCache.close = lambda self, **kwargs: None
