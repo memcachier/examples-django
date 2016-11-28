@@ -2,7 +2,7 @@
 
 This is an example Django app that uses
 [MemCachier](http://www.memcachier.com) to cache algebraic
-computations. This example is written with Django 1.6.
+computations. This example is written with Django 1.8.16.
 
 You can view a working version of this app
 [here](http://memcachier-examples-django.herokuapp.com) that uses
@@ -99,31 +99,26 @@ CACHES = {
         'TIMEOUT': None,
         'OPTIONS': {
             # Enable faster IO
-            'no_block': True,
             'tcp_nodelay': True,
 
             # Keep connection alive
             'tcp_keepalive': True,
 
-            # Timeout for set/get requests (sadly timeouts don't mark a
-            # server as failed, so failover only works when the connection
-            # is refused)
-            '_poll_timeout': 2000,
+            # Timeout settings
+            'connect_timeout': 2000, # ms
+            'send_timeout': 750 * 1000, # us
+            'receive_timeout': 750 * 1000, # us
+            '_poll_timeout': 2000, # ms
 
-            # Use consistent hashing for failover
+            # Better failover
             'ketama': True,
-
-            # Configure failover timings
-            'connect_timeout': 2000,
-            'remove_failed': 4,
+            'remove_failed': 1,
             'retry_timeout': 2,
-            'dead_timeout': 10
+            'dead_timeout': 30
         }
     }
 }
 ```
-
-Feel free to change the `_poll_timeout` setting to match your needs.
 
 ## Persistent Connections
 

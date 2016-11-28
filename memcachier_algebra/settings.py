@@ -35,25 +35,22 @@ else:
 
             'OPTIONS': {
                 # Enable faster IO
-                'no_block': True,
                 'tcp_nodelay': True,
 
                 # Keep connection alive
                 'tcp_keepalive': True,
 
-                # Timeout for set/get requests (sadly timeouts don't mark a
-                # server as failed, so failover only works when the connection
-                # is refused)
-                '_poll_timeout': 2000,
+                # Timeout settings
+                'connect_timeout': 2000, # ms
+                'send_timeout': 750 * 1000, # us
+                'receive_timeout': 750 * 1000, # us
+                '_poll_timeout': 2000, # ms
 
-                # Use consistent hashing for failover
+                # Better failover
                 'ketama': True,
-
-                # Configure failover timings
-                'connect_timeout': 2000,
-                'remove_failed': 4,
+                'remove_failed': 1,
                 'retry_timeout': 2,
-                'dead_timeout': 10
+                'dead_timeout': 30
             }
         }
     }
