@@ -2,7 +2,11 @@
 
 This is an example Django app that uses
 [MemCachier](http://www.memcachier.com) to cache algebraic
-computations. This example is written with Django 1.8.16.
+computations. 
+
+**This example is written with Django 1.8.16. Unless you specifically
+need an old Django version you should check out a newer 
+[example](https://github.com/memcachier/examples-django-tasklist).**
 
 You can view a working version of this app
 [here](http://memcachier-examples-django.herokuapp.com) that uses
